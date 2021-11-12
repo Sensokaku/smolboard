@@ -5,51 +5,7 @@
 		<div class="content">
 			{{ with .Post }}
 	
-			<aside>
-				<form class="tags">
-					<legend>Tags</legend>
-					{{/* This has to be first for the tag input to work */}}
-					<input type="submit" style="display: none"
-						   name="submit"
-						   formaction="/posts/{{.ID}}/tag" formmethod="post"
-					/>
-	
-					{{ with .Tags }}
-					<div class="tag-grid">
-						{{ range . }}
-						<p class="tag-count">{{ .Count }}</p>
-						<button type="submit" class="tag name"
-								formaction="/posts"
-								name="q" value="{{ .Escaped }}"
-						>
-							{{ .TagName }}
-						</button>
-
-						{{ if $.CanChangePost }}
-						<button type="submit" class="tag delete-tag"
-								name="tag" value="{{ .TagName }}"
-								formaction="/posts/{{$.Post.ID}}/untag" formmethod="post"
-						>
-							×
-						</button>
-						{{ else }}
-						<span></span>
-						{{ end }}
-
-						{{ end }}
-					</div>
-					{{ else }}
-					<p class="no-tag-msg">No tags.</p>
-					{{ end }}
-	
-					{{ if $.CanChangePost }}
-					<input type="text" class="add"
-						   name="tag" placeholder="Add a tag..."
-						   formaction="/posts/{{.ID}}/tag" formmethod="post"
-					/>
-					{{ end }}
-				</form>
-	
+			<aside>	
 				<div class="post-share">
 					<legend>Share</legend>
 	
@@ -95,10 +51,6 @@
 						</time>
 						{{ end }}
 	
-						{{ if $.CanChangePost }}
-						<span>Permission</span>
-						<span id="permission">{{ .Permission }}</span>
-						{{ end }}
 					</div>
 				</div>
 	
@@ -117,19 +69,6 @@
 				</div>
 				{{ end }}
 	
-				{{ with $.AllowedSetPerms }}
-				<div class="post-promote sensitive">
-					<legend>Permission</legend>
-	
-					<form class="seamless" action="/posts/{{$.Post.ID}}/permission" method="post">
-						{{ range . }}
-						<button type="submit" class="small" name="p" value="{{ .StringInt }}">
-							{{ . }}
-						</button>
-						{{ end }}
-					</form>
-				</div>
-				{{ end }}
 			</aside>
 	
 			<main class="post">

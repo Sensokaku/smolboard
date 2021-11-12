@@ -26,83 +26,12 @@
 						</div>
 					</button>
 
-					<button type="submit" class="small primary trigger-busy"
-							formmethod="post" formaction="/settings/posts/apply"
-					>
-						<span>Apply</span>
-
-						<div class="busy-overlay">
-							<div role="progressbar" class="spinner primary"></div>
-						</div>
-					</button>
-				</div>
-			</div>
-
-			<div class="modperm">
-				<legend>Action: Modify Permission</legend>
-
-				<div class="modperm-form">
-					<select id="permission" name="permission" class="small">
-						<option value="-1" id="unchanged">Unchanged</option>
-
-						{{ range .Me.AllowedPermissions }}
-						<option value="{{ .StringInt }}"
-								{{ if (eq . $.State.Permission) }}
-								selected
-								{{ end }}
-						>
-							{{ . }}
-						</option>
-						{{ end }}
-					</select>
-
-					<button type="submit" class="small">Change</button>
-				</div>
-			</div>
-
-			<div class="modtags">
-				<div class="header">
-					<legend>Action: Modify Tags</legend>
-					<span><sub>Prefix tags with a - (minus) to untag posts.</sub></span>
-				</div>
-
-				<div class="modtag-grid">
-					{{ range .State.Tags.Sorted }}
-					<button type="submit" class="tag {{ tagRemoveName . }}"
-							name="q" value="{{ tagEscape . }}"
-					>
-						{{ . }}
-					</button>
-
-					<button type="submit" class="remove-tag small"
-							name="untag" value="{{ . }}"
-					>
-						×
-					</button>
-					{{ end }}
-				</div>
-
-				<div class="modtag-form">
-					<input type="text" class="add small"
-						   name="tag" placeholder="Add tag 1; -Remove tag 2; ..."
-					/>
-					<button type="submit" class="small">Add</button>
 				</div>
 			</div>
 
 			<div class="modposts">
 				<div class="header">
 					<h3>Posts</h3>
-
-					<div class="modposts-search">
-						<input type="text" class="small" name="q" value="{{ .Query }}"
-							   title="Filter Posts" placeholder="Filter"
-						>
-
-						<button type="submit" class="small" value="Submit" title="Submit Search">
-							<span class="icon-search"></span>
-						</button>
-					</div>
 				</div>
 
 				<div class="modposts-list">

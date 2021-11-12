@@ -50,18 +50,6 @@
 					<legend>Upload Files</legend>
 	
 					<input  type="file" name="file" accept="{{ $.AllowedTypes }}" multiple>
-
-					<select id="permission" name="p">
-						{{ range . }}
-						<option value="{{ .StringInt }}"
-								{{ if (eq . $.DefaultUploadPerm) }}
-								selected
-								{{ end }}
-						>
-							{{ . }}
-						</option>
-						{{ end }}
-					</select>
 	
 					<button class="upload small trigger-busy" type="submit">
 						<span>Upload</span>
