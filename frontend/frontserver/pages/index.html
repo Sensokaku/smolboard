@@ -7,14 +7,15 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+		<meta name="twitter:card" content="summary_large_image">
 		<meta property="og:site_name" content="{{ .Config.SiteName }}" />
 		<title>{{ .FormatTitle }}</title>
 
 		{{ with .Render.Title }}
-			<meta property="og:title" content="{{ . }}" />
+			<meta property="og:title" content="Uploaded by {{ . }}" />
 		{{ end }}
 		{{ with .Render.ImageURL }}
-			<meta property="og:image" content="{{ . }}" />
+			<meta name="twitter:image" content="{{ . }}" />
 		{{ end }}
 		{{ with .Render.Description }}
 			<meta property="og:description" content="{{ . }}" />
